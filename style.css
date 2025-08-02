@@ -15,7 +15,7 @@
     --secondary: #0f172a;      /* deep navy for headers and footer */
     --bg-light: #ffffff;       /* page background */
     --text-dark: #1f2937;      /* dark grey for primary text */
-    --text-muted: #6b7280;     /* muted grey for secondary text */
+    --text-muted: #6b7280;     d grey for secondary text */
     --border: #e5e7eb;         /* light border colour */
 }
 
@@ -153,7 +153,7 @@ a {
  .hero {
     position: relative;
     height: 100vh;
-    background-image: url('assets/hero.jpg');
+    background-image: url('hero.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
