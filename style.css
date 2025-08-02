@@ -1,0 +1,424 @@
+/*
+ * Global Styles and Variables
+ *
+ * This stylesheet defines the colour palette, typography, layout and responsive
+ * behaviours for the MRP Solutions website. Care has been taken to follow
+ * modern design principles for 2025 – using soothing yet vibrant colours,
+ * generous white space, and interactive micro‑animations for a polished
+ * experience. The palette draws from warm oranges and deep navies, as
+ * recommended by contemporary web design trends【417600890208859†L149-L160】.
+ */
+
+:root {
+    --primary: #ff7a18;        /* warm orange accent */
+    --primary-dark: #e8640d;   /* darker shade for hover states */
+    --secondary: #0f172a;      /* deep navy for headers and footer */
+    --bg-light: #ffffff;       /* page background */
+    --text-dark: #1f2937;      /* dark grey for primary text */
+    --text-muted: #6b7280;     /* muted grey for secondary text */
+    --border: #e5e7eb;         /* light border colour */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* Utility classes */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: #fff;
+}
+
+.btn.secondary:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* Header and Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+ .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hero Section */
+ .hero {
+    position: relative;
+    height: 100vh;
+    background-image: url('assets/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    padding-top: 4rem;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #f3f4f6;
+}
+
+/* Section Styling */
+.section {
+    padding: 6rem 0;
+}
+
+ .section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--secondary);
+}
+
+/* Features and Benefits Grids */
+/*
+ * Grid definitions for features and benefits sections. Each card starts
+ * invisible and slightly translated; when the IntersectionObserver triggers
+ * the `.show` class the card becomes opaque and slides into place.
+ */
+.features-grid,
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.feature,
+.benefit {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature.show,
+.benefit.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature i,
+.benefit i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.feature h3,
+.benefit h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature p,
+.benefit p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.feature:hover,
+.benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* About Section */
+/*
+ * About section structure. The content is split into two flexible columns for
+ * text and illustration. Each block animates into view on scroll. Within
+ * the text container paragraphs inherit the muted text colour defined in
+ * the palette.
+ */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 280px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.about-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+.about-image {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.about-image.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Section */
+ .contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contact-content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+    min-width: 250px;
+    text-align: left;
+}
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.contact-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 122, 24, 0.2);
+}
+
+.contact-form button {
+    width: 100%;
+}
+
+/* Footer */
+ .footer {
+    background: var(--secondary);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--secondary);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .about-content {
+        flex-direction: column;
+    }
+}
